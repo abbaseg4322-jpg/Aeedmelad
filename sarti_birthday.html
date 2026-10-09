@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عيد ميلاد سارتي 🎂</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(160deg, #1a0000 0%, #4a0000 40%, #8b0000 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: #fff;
+    position: relative;
+  }
+
+  /* ====== قلوب متطايرة ====== */
+  .heart {
+    position: fixed;
+    bottom: -40px;
+    font-size: 24px;
+    color: #ff4d6d;
+    pointer-events: none;
+    animation: floatUp linear infinite;
+    opacity: 0;
+    z-index: 1;
+    text-shadow: 0 0 12px rgba(255,77,109,.8);
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 0; }
+    10%  { opacity: .9; }
+    90%  { opacity: .7; }
+    100% { transform: translateY(-110vh) rotate(360deg) scale(1.4); opacity: 0; }
+  }
+
+  /* ====== البالونات ====== */
+  .balloon {
+    position: fixed;
+    bottom: -120px;
+    width: 60px; height: 75px;
+    border-radius: 50% 50% 50% 50% / 55% 55% 45% 45%;
+    animation: balloonUp linear infinite;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .balloon::before {
+    content: "♥";
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    color: rgba(255,255,255,.85);
+    font-size: 22px;
+  }
+  .balloon::after {
+    content: "";
+    position: absolute;
+    bottom: -60px; left: 50%;
+    width: 2px; height: 60px;
+    background: rgba(255,255,255,.4);
+  }
+  @keyframes balloonUp {
+    0%   { transform: translateY(0) translateX(0) rotate(-3deg); opacity: 0; }
+    8%   { opacity: .95; }
+    100% { transform: translateY(-120vh) translateX(40px) rotate(5deg); opacity: 0; }
+  }
+
+  /* ====== المحتوى ====== */
+  .container {
+    position: relative;
+    z-index: 5;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 20px 80px;
+    text-align: center;
+  }
+
+  .glow-text {
+    font-family: 'Amiri', serif;
+    font-size: clamp(42px, 9vw, 90px);
+    font-weight: 700;
+    background: linear-gradient(90deg, #ffd6de, #ff8fa3, #ff4d6d, #ffd6de);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+    filter: drop-shadow(0 0 25px rgba(255,77,109,.7));
+    margin-bottom: 8px;
+  }
+  @keyframes shine { to { background-position: 300% center; } }
+
+  .subtitle {
+    font-size: clamp(20px, 4vw, 32px);
+    color: #ffd6de;
+    text-shadow: 0 0 15px rgba(255,143,163,.6);
+    margin-bottom: 30px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+
+  .cake { font-size: clamp(70px, 14vw, 120px); margin: 15px 0; animation: bounce 2s infinite; }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-18px) rotate(3deg); }
+  }
+
+  .message-box {
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,143,163,.4);
+    border-radius: 25px;
+    padding: 30px 25px;
+    margin: 25px 0;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 40px rgba(255,77,109,.25), inset 0 0 30px rgba(255,255,255,.04);
+    font-size: clamp(17px, 3vw, 23px);
+    line-height: 2.1;
+    color: #ffe9ec;
+  }
+  .message-box span { color: #ff8fa3; font-weight: 700; }
+
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 45px rgba(255,77,109,.45);
+    border: 3px solid #ff4d6d;
+    margin: 25px 0;
+  }
+  .video-wrap iframe {
+    position: absolute; top:0; left:0;
+    width:100%; height:100%;
+  }
+
+  .play-btn {
+    background: linear-gradient(135deg, #ff4d6d, #c9184a);
+    border: none;
+    color: #fff;
+    font-family: 'Cairo', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    padding: 15px 45px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(255,77,109,.5);
+    transition: transform .25s, box-shadow .25s;
+    margin-top: 10px;
+  }
+  .play-btn:hover { transform: scale(1.08); box-shadow: 0 12px 35px rgba(255,77,109,.8); }
+
+  .confetti {
+    position: fixed;
+    width: 10px; height: 10px;
+    top: -10px;
+    z-index: 50;
+    pointer-events: none;
+    animation: confettiFall linear forwards;
+  }
+  @keyframes confettiFall {
+    to { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+  }
+
+  .footer-note {
+    margin-top: 40px;
+    font-family: 'Amiri', serif;
+    font-size: clamp(22px, 5vw, 34px);
+    color: #ffb3c1;
+    text-shadow: 0 0 20px rgba(255,77,109,.8);
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="cake">🎂❤️</div>
+    <h1 class="glow-text">عيد ميلاد سعيد يا سارتي</h1>
+    <div class="subtitle">✨ كل عام وأنتِ بخير ✨</div>
+
+    <div class="message-box">
+      🌹 <span>سارتي الغالية</span> 🌹<br>
+      في يوم ميلادك، نتمنى لكِ عامًا يعجّ بالحب والضحك والفرح<br>
+      أنتِ نورٌ يضيء كل من حولك، وقلبٌ يسكنه الحنان<br>
+      عساكِ كل عامٍ أجمل، وأحلى، وأطيب من العام الذي قبله 💖<br>
+      عيد ميلاد سعيد! 🎉🎈
+    </div>
+
+    <button class="play-btn" onclick="playSong()">🎵 شغّلي أغنية عيد الميلاد 🎵</button>
+
+    <div class="video-wrap" id="videoBox" style="display:none; margin-top:25px;">
+      <iframe id="ytFrame" src="https://www.youtube.com/embed/glRTRNZ7oMg?autoplay=1&rel=0" title="أغنية عيد ميلاد" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <div class="message-box">
+      💌 رسالة من القلب:<br>
+      «لا شيء أجمل من وجودك في حياتنا،<br>
+      يومك هذا يومٌ خاص،<br>
+      لأن الدنيا صارت أجمل يوم جئتِ إليها» ❤️
+    </div>
+
+    <div class="footer-note">🎁 نحبّكِ كثيراً يا سارتي 🎁</div>
+  </div>
+
+<script>
+  // قلوب متطايرة
+  function spawnHearts() {
+    for (let i = 0; i < 18; i++) {
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.innerHTML = Math.random() > 0.5 ? '❤' : '💗';
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.fontSize = (16 + Math.random() * 26) + 'px';
+      h.style.animationDuration = (6 + Math.random() * 8) + 's';
+      h.style.animationDelay = (Math.random() * 8) + 's';
+      document.body.appendChild(h);
+    }
+  }
+
+  // بالونات حمراء
+  function spawnBalloons() {
+    for (let i = 0; i < 7; i++) {
+      const b = document.createElement('div');
+      b.className = 'balloon';
+      b.style.left = (5 + Math.random() * 88) + 'vw';
+      b.style.background = ['#ff4d6d','#c9184a','#ff758f','#e63946'][i % 4];
+      b.style.animationDuration = (9 + Math.random() * 8) + 's';
+      b.style.animationDelay = (Math.random() * 9) + 's';
+      document.body.appendChild(b);
+    }
+  }
+
+  // قصاصات احتفالية
+  function launchConfetti() {
+    const colors = ['#ff4d6d','#ffd6de','#fff','#ff8fa3','#ffb3c1'];
+    for (let i = 0; i < 90; i++) {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random() * 100 + 'vw';
+      c.style.background = colors[Math.floor(Math.random() * colors.length)];
+      c.style.animationDuration = (2.5 + Math.random() * 3) + 's';
+      c.style.animationDelay = (Math.random() * 1.5) + 's';
+      c.style.borderRadius = Math.random() > .5 ? '50%' : '2px';
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), 6500);
+    }
+  }
+
+  function playSong() {
+    document.getElementById('videoBox').style.display = 'block';
+    document.getElementById('ytFrame').src =
+      'https://www.youtube.com/embed/glRTRNZ7oMg?autoplay=1&rel=0';
+    launchConfetti();
+    setInterval(launchConfetti, 6000);
+    document.querySelector('.play-btn').style.display = 'none';
+    document.getElementById('videoBox').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  spawnHearts();
+  spawnBalloons();
+  setTimeout(launchConfetti, 1200);
+</script>
+</body>
+</html>
